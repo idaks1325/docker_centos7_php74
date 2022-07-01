@@ -10,15 +10,18 @@ RUN yum -y install http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
 
 # Install apache
 RUN yum install -y httpd
+RUN mkdir /var/www/logs/
 
 # Install PHP
 RUN yum-config-manager --enable remi-php74
 RUN yum -y install php php-devel php-mbstring php-pdo php-xml php-gd php-fpm php-mysqlnd php-opcache php-pecl-zip libzip5
-RUN yum -y install php-bcmath php-intl php-imap
+RUN yum -y install php-bcmath php-intl php-imap 
+
+RUN yum -y install composer yum-utils php-pear php-pecl-memcached php-pecl-memcache 
 
 # Install Xdebug
 RUN yum -y install git
-RUN  yum -y install php-pecl-xdebug
+RUN yum -y install php-pecl-xdebug
 RUN touch /var/log/xdebug.log && chmod a+w /var/log/xdebug.log
 
 # MeCab
